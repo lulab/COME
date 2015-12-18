@@ -11,14 +11,14 @@ COME integreated features including GC content, DNA sequence conservation, prote
 
 COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)  
 
-## 1. Installation and Requirements
+## 1. Installation
+####	Pre-requisite:
+1. Linux
+2. R (>=2.15.2)
+3. R packages ("randomForest" and "rhd5"); You can install these packages by entering R and typing these: `install.packages("randomForest"); install.packages("rhd5");`
 
-COME requires R(>=2.15.2) and R packages "randomForest" and "rhd5" pre-installed in a linux system. In your terminal, enter R and type the following commands:
-
-	install.packages("randomForest"); install.packages("rhd5");
-
-#### COME doesn't need installation.    
-1. Users need to download the folder of [bin](http://github.com/lulab/COME) (which contains source codes) from the github into their working directories.
+####	Download files into sepcific folders.   
+1. First, users need to download the source codes from github and uncompress it: ``
 2. Second, users need to download your species' feature vector files from the [download page](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder of /your/working/dir/bin/HDF5.
 3. Third, users need to download your species' model file from the [download page](http://1drv.ms/1GG4eTA). The model file need to be placed in the subfolder of /your/working/dir/bin/models.
 4. For example, if you want to calculate coding potential scores for your _human_ transcripts, here's the instrcution:
