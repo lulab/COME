@@ -14,12 +14,16 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 ## 1. Installation and Requirements
 
 COME requires R(>=2.15.2) and R packages "randomForest" and "rhd5" pre-installed in a linux system. In your terminal, enter R and type the following commands:
-	install.packages("randomForest")
-	install.packages("rhd5")
+
+	install.packages("randomForest"); install.packages("rhd5");
 
 #### COME doesn't need installation.    
-1. users need to download the whole folder of [bin](http://github.com/lulab/COME) (which contains source codes) from the github into his working directory. Make sure all the files are in one folder, hereafter, we name this folder the _bin folder_.    
-2. Second, users need to download your species' CPL file and level 2 model from the [download page](http://1drv.ms/1GG4eTA). These (two) files need to be also placed in the _bin folder_ under your working directory.
+1. Users need to download the folder of [bin](http://github.com/lulab/COME) (which contains source codes) from the github into their working directories.
+2. Second, users need to download your species' feature vector files from the [download page](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder of /your/working/dir/bin/HDF5.
+3. Third, users need to download your species' model file from the [download page](http://1drv.ms/1GG4eTA). The model file need to be placed in the subfolder of /your/working/dir/bin/models.
+4. For example, if you want to calculate coding potential scores for your _human_ transcripts, here's the instrcution:
+
+		wget
 
 ## 2. Usage
 
