@@ -4,19 +4,21 @@
 
 COME (coding potential calculator based on multiple features) is a computational tool that predicts the coding potential for a given transcript. It integrates multiple sequence-derived and experiment-based features using a decompose-compose method, which makes COME’s performance more accurate and robust than other well-known tools, for transcripts with different lengths and assembly qualities. First, COME compose the feature matrix for the given transcripts using the pre-calculated features vectors. Second, COME predict the coding potential by the pre-trained models, using the feature matrix generated in the first step.
 
-COME is currently pre-trained for five model species: human (hg19), mouse (mm10), fly (dm3), worm (ce10) and plant (TAIR10). The pre-trained models were avaible in the folder of [bin/models] (http://RNAfinder.ncrnalab.org/COME)
+COME is currently pre-trained for five model species: human (hg19), mouse (mm10), fly (dm3), worm (ce10) and plant (TAIR10). The pre-trained models were avaible in the folder of [bin/models] (http://github.com/lulab/COME/tree/master/bin/models)
 
-COME integreated features including GC content, DNA sequence conservation, protein conservation and RNA secondary structure conservation, expression abundance from poly(A)+, poly(A)- and small RNA sequencing, H3K36me3 and H3K4me3 modification. These input features were pre-calculated and avaiable in folder of [bin/HDF5] (http://RNAfinder.ncrnalab.org/COME)
+COME integreated features including GC content, DNA sequence conservation, protein conservation and RNA secondary structure conservation, expression abundance from poly(A)+, poly(A)- and small RNA sequencing, H3K36me3 and H3K4me3 modification. These input features were pre-calculated and avaiable in folder of [bin/HDF5] (http://github.com/lulab/COME/tree/master/bin/HDF5)
 
 
 COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)  
 
 ## 1. Installation and Requirements
 
-COME requires R(>=2.15.2) and R packages "randomForest" and "rhd5" pre-installed in a linux system.
+COME requires R(>=2.15.2) and R packages "randomForest" and "rhd5" pre-installed in a linux system. In your terminal, enter R and type the following commands:
+	install.packages("randomForest")
+	install.packages("rhd5")
 
 #### COME doesn't need installation.    
-1. users need to download the [scripts](https://github.com/lulab/COME) (which contains source codes) from the github into his working directory. Make sure all the files are in one folder, hereafter, we name this folder the _bin folder_.    
+1. users need to download the whole folder of [bin](http://github.com/lulab/COME) (which contains source codes) from the github into his working directory. Make sure all the files are in one folder, hereafter, we name this folder the _bin folder_.    
 2. Second, users need to download your species' CPL file and level 2 model from the [download page](http://1drv.ms/1GG4eTA). These (two) files need to be also placed in the _bin folder_ under your working directory.
 
 ## 2. Usage
