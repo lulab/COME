@@ -4,9 +4,9 @@
 
 COME (coding potential calculator based on multiple features) is a computational tool that predicts the coding potential for a given transcript. It integrates multiple sequence-derived and experiment-based features using a decompose-compose method, which makes COME’s performance more accurate and robust than other well-known tools, for transcripts with different lengths and assembly qualities. First, COME compose the feature matrix for the given transcripts using the pre-calculated features vectors. Second, COME predict the coding potential by the pre-trained models, using the feature matrix generated in the first step.
 
-COME is currently pre-trained for five model species: human (hg19), mouse (mm10), fly (dm3), worm (ce10) and plant (TAIR10). The pre-trained models were avaible in the folder of [bin/models] (http://github.com/lulab/COME/tree/master/bin/models)
+COME is currently pre-trained for five model species: human (hg19), mouse (mm10), fly (dm3), worm (ce10) and plant (TAIR10). The pre-trained models were avaible in the folder of [bin/models] (https://github.com/lulab/COME/tree/master/bin/models)
 
-COME integreated features including GC content, DNA sequence conservation, protein conservation and RNA secondary structure conservation, expression abundance from poly(A)+, poly(A)- and small RNA sequencing, H3K36me3 and H3K4me3 modification. These input features were pre-calculated and avaiable in folder of [bin/HDF5] (http://github.com/lulab/COME/tree/master/bin/HDF5)
+COME integreated features including GC content, DNA sequence conservation, protein conservation and RNA secondary structure conservation, expression abundance from poly(A)+, poly(A)- and small RNA sequencing, H3K36me3 and H3K4me3 modification. These input features were pre-calculated and avaiable in folder of [bin/HDF5] (https://github.com/lulab/COME/tree/master/bin/HDF5)
 
 
 COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)  
@@ -24,7 +24,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 		$ cd 		./COME-master/bin;
 		$ Bin_dir=`pwd|awk '{print $1}'`;
 
-2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
+2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1TXgymk). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
 
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
