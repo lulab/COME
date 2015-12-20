@@ -137,8 +137,7 @@ if [ `expr "$matrix_size" "<" "101"` -eq "1"      ]; then
 	perl	$BIN_DIR/get_matrix_from_ID.pl	$out_dir/$TEMP_DIR/$FILE.length	$out_dir/$TEMP_DIR/$FILE.TRIDs		$out_dir/$TEMP_DIR/$FILE.foo3;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
-	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g'		>	$out_dir/result.txt;
-	sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
+	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g'	>	$out_dir/result.txt;
 	echo "3 subclasses were assigned. Output matrix is done."
 else
 	####	1 subclass.
@@ -150,7 +149,6 @@ else
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g;'	>	$out_dir/result.txt;
-	sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "1 subclass were assigned. Output matrix is done."
 fi;
 
