@@ -29,7 +29,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
 	
-3. Third, download your species' model file from the [download page for models](http://1drv.ms/1GG4eTA). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
+3. Third, download your species' model file from the [download page for models](http://1drv.ms/1TXh9o1). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
 		$ mv	./human.model	$Bin_dir/models;
 
@@ -57,9 +57,9 @@ Assuming I want to predict my human test transcripts, `~/human.test.gtf`. I woul
 
 `~/COME-master.zip` was downloaded to my working directory from [github] (https://github.com/lulab/COME/archive/master.zip).
 
-`~/human.feature_vector.HDF5.zip` was downloaded to my working directory from [download page for feature vectors](http://1drv.ms/1GG4eTA).
+`~/human.feature_vector.HDF5.zip` was downloaded to my working directory from [download page for feature vectors](http://1drv.ms/1TXgymk).
 
-`~/human.model` was downloaded to my working directory from [download page for models](http://1drv.ms/1GG4eTA). 
+`~/human.model` was downloaded to my working directory from [download page for models](http://1drv.ms/1TXh9o1). 
 
 The commands would be: 
 
