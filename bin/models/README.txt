@@ -1,5 +1,5 @@
 ################		
-##Model files for five species could be obtain from:
+##Model files for five species could be obtain from: http://1drv.ms/1TXh9o1.
 ##After downloaind your species' model file, please move it into the subfolder "COME-master/bin/model";
 ################
 ##The md5sum codes are:
