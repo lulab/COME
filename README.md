@@ -20,32 +20,32 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 ####	Download files into sepcific folders.   
 1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
 
-		unzip	master.zip;
-		cd 	COME-master/bin;
+		unzip	./master.zip;
+		cd 	./COME-master/bin;
 		Bin_dir=`pwd|awk '{print $1}'`;
 
 2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
 
-		unzip	human.feature_vector.HDF5.zip;
-		mv	./human.feature_vector.HDF5/*	$Bin_dir/HDF5;
+		unzip	./human.feature_vector.HDF5.zip;
+		mv	./human/human.HDF5.*	$Bin_dir/HDF5;
 	
 3. Third, download your species' model file from the [download page for models](http://1drv.ms/1GG4eTA). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
-		mv	human.model	$Bin_dir/models;
+		mv	./human.model	$Bin_dir/models;
 
 
-## 2. Usage
+## 2. Usage and Examples
 
-	$Bin_dir/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output	$Bin_dir	species
+	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output/	/path/to/bin_subfolder/	species
   
 _____
-* `$Bin_dir` is the folder where you kept downloaded COME's "bin" subfolder.
+* `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the $Bin_dir
 
-* `$Bin_dir/COME_main.sh` is COME's main program script.
+* `/path/to/bin_subfolder/COME_main.sh` is COME's main program script.
 
 * `/path/to/your/transcripts.gtf` is your input gtf file. The input gtf file should be as the description of ucsc's [gtf format] (http://genome.ucsc.edu/FAQ/FAQformat.html#format4).    
 
-* `/path/to/your/output` is a folder that will be created (if the user didn't create it already) to save your output file.
+* `/path/to/your/output/` is a folder that will be created (if the user didn't create it already) to save your output file "result.txt"
 
 * `species` is one of these five names: human, mouse, fly, worm and plant. It specifies which species' feature vector files and model should be applied to your calculation
 
@@ -53,11 +53,23 @@ ______
 
 #### An example:
 
-Assuming I want to predict human transcripts, `/my/test/transcript.gtf`. I would download the [scripts] (https://github.com/lulab/COME) into `/my/working/directory/bin`, also downloaded `human.CPL`, `human.chr.models` from the [download page](http://1drv.ms/1GG4eTA) and move them into `/my/working/directory/bin`. And the output files would be saved in `/my/output/directory`;  
-The command would be: 
+Assuming I want to predict my human transcripts, `~/human.test.gtf`. I would working on my home directory `~/` and I want the output file in the folder `~/COME_out/` 
+`~/COME-master.zip` was downloaded to my working directory from [github] (https://github.com/lulab/COME/archive/master.zip)
+`~/human.feature_vector.HDF5.zip` was downloaded to my working directory from [download page for feature vectors](http://1drv.ms/1GG4eTA).
+`~/human.model` was downloaded to my working directory from [download page for models](http://1drv.ms/1GG4eTA). 
+The commands would be: 
+		#Installation and preparison
+		cd ~/;							#go to working directory
+		unzip	./master.zip;					#unzip COME's scripts
+		cd 	./COME-master/bin;				#go to COME's "bin" subfolder
+		Bin_dir=`pwd|awk '{print $1}'`;				#save the path of "bin" subfolder to the variable "$Bin_dir"
+		unzip	./human.feature_vector.HDF5.zip;		#decompressing feature vector files
+		mv	./human/human.HDF5.*	$Bin_dir/HDF5;		#put feature vector files to "bin/HDF5" subfolder
+		mv	./human.model	$Bin_dir/models;		#put model file to "bin/models" subfolder
+		#Running COME
+		$Bin_dir/COME_main.sh ~/human.test.gtf	~/COME_out/	$Bin_dir	human;
 
-	/my/working/directory/bin/check_gtf.sh   /my/test/transcript.gtf    human
-	/my/working/directory/bin/COME_chr.sh    /my/test/transcript.gtf    /my/output/directory    /my/working/directory/bin    human
+The final output will be stored in `~/COME_out/result.txt`;
 
 
 ## 3. Citing COME
