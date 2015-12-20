@@ -18,18 +18,21 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 3. R packages ("randomForest" and "rhd5"); You can install these packages by entering R and typing these: `install.packages("randomForest"); install.packages("rhd5");`
 
 ####	Download files into sepcific folders.   
-1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it.
+1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path variable `BinDir`
 
 		unzip	master.zip;
 		cd 	COME-master/bin;
 		BinDir=`pwd|awk '{print $1}'`;
 
+2. Second, download your species' feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5". Let's say we want to calculate coding potential for _human_ transcriptome.
 
-2. Second, download your species' feature vector files from the [download page](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder of /your/working/dir/bin/HDF5.
-3. Third, users need to download your species' model file from the [download page](http://1drv.ms/1GG4eTA). The model file need to be placed in the subfolder of /your/working/dir/bin/models.
-4. For example, if you want to calculate coding potential scores for your _human_ transcripts, here's the instrcution:
+		unzip	human.feature_vector.HDF5.zip;
+		mv	./human.feature_vector.HDF5/*	$BinDir/HDF5;
+	
+3. Third, download your species' model file from the [download page for models](http://1drv.ms/1GG4eTA). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
-		wget
+		mv	human.model			$BinDir/models;
+
 
 ## 2. Usage
 
