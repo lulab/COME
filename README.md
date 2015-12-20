@@ -18,39 +18,36 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 3. R packages ("randomForest" and "rhd5"); You can install these packages by entering R and typing these: `install.packages("randomForest"); install.packages("rhd5");`
 
 ####	Download files into sepcific folders.   
-1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path variable `BinDir`
+1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
 
 		unzip	master.zip;
 		cd 	COME-master/bin;
-		BinDir=`pwd|awk '{print $1}'`;
+		Bin_dir=`pwd|awk '{print $1}'`;
 
-2. Second, download your species' feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5". Let's say we want to calculate coding potential for _human_ transcriptome.
+2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
 
 		unzip	human.feature_vector.HDF5.zip;
-		mv	./human.feature_vector.HDF5/*	$BinDir/HDF5;
+		mv	./human.feature_vector.HDF5/*	$Bin_dir/HDF5;
 	
 3. Third, download your species' model file from the [download page for models](http://1drv.ms/1GG4eTA). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
-		mv	human.model			$BinDir/models;
+		mv	human.model	$Bin_dir/models;
 
 
 ## 2. Usage
 
-	/path/to/COME/bin/folder/COME_chr.sh    /path/to/your/transcripts.gtf    /path/to/your/output    /path/to/COME/bin/folder    model_species_name
+	$Bin_dir/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output	$Bin_dir	species
   
 _____
-* `/path/to/COME/bin/folder` is the folder where you kept downloaded COME's scripts and models, namely, the _bin folder_.
+* `$Bin_dir` is the folder where you kept downloaded COME's "bin" subfolder.
 
-* `/path/to/COME/bin/folder/COME_chr.sh` is COME's main program script.
+* `$Bin_dir/COME_main.sh` is COME's main program script.
 
-* `/path/to/your/transcripts.gtf` is your input gtf file. Should be given with absolute path. The input gtf file should be:    
-  * as the description of ucsc's [gtf format](http://genome.ucsc.edu/FAQ/FAQformat.html#format4)     
-  * Users can check the input gtf files using our provided [check_gtf.sh](https://github.com/lulab/COME/check_gtf.sh) script.   
-  * `/path/to/COME/bin/folder/check_gtf.sh	/path/to/your/transcripts.gtf	model_species_name`
+* `/path/to/your/transcripts.gtf` is your input gtf file. The input gtf file should be as the description of ucsc's [gtf format] (http://genome.ucsc.edu/FAQ/FAQformat.html#format4).    
 
-* `/path/to/your/output` is a folder that will be created (if the user didn't create it already) to save your output file(s).
+* `/path/to/your/output` is a folder that will be created (if the user didn't create it already) to save your output file.
 
-* `model_species_name` is one of these five names: human, mouse, fly, worm and plant. It specifies which species' CPL file and level 2 model should be applied to your calculation
+* `species` is one of these five names: human, mouse, fly, worm and plant. It specifies which species' feature vector files and model should be applied to your calculation
 
 ______  
 
