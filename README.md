@@ -63,15 +63,16 @@ Assuming I want to predict my human test transcripts, `~/human.test.gtf`. I woul
 
 The commands would be: 
 
-		#Installation and preparison
-		$ cd ~/;						#go to working directory
-		$ unzip	./master.zip;					#unzip COME's scripts
-		$ cd 	./COME-master/bin;				#go to COME's "bin" subfolder
-		$ Bin_dir=`pwd|awk '{print $1}'`;			#save the path of "bin" subfolder to the variable "$Bin_dir"
-		$ unzip	./human.feature_vector.HDF5.zip;		#decompressing feature vector files
-		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;		#put feature vector files to "bin/HDF5" subfolder
-		$ mv	./human.model	$Bin_dir/models;		#put model file to "bin/models" subfolder
-		#Running COME
+		## Installation and preparison
+		$ cd ~/;		
+		$ unzip	./master.zip;
+		$ cd 	./COME-master/bin;
+		## Save the path of "bin" subfolder to the variable "$Bin_dir"
+		$ Bin_dir=`pwd|awk '{print $1}'`;
+		$ unzip	./human.feature_vector.HDF5.zip;
+		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
+		$ mv	./human.model	$Bin_dir/models;
+		## Running COME
 		$ $Bin_dir/COME_main.sh ~/human.test.gtf	~/COME_out/	$Bin_dir	human;
 
 
