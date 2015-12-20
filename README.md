@@ -20,18 +20,18 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 ####	Download files into sepcific folders.   
 1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
 
-		unzip	./master.zip;
-		cd 	./COME-master/bin;
-		Bin_dir=`pwd|awk '{print $1}'`;
+		$ unzip		./master.zip;
+		$ cd 		./COME-master/bin;
+		$ Bin_dir=`pwd|awk '{print $1}'`;
 
 2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1GG4eTA). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
 
-		unzip	./human.feature_vector.HDF5.zip;
-		mv	./human/human.HDF5.*	$Bin_dir/HDF5;
+		$ unzip	./human.feature_vector.HDF5.zip;
+		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
 	
 3. Third, download your species' model file from the [download page for models](http://1drv.ms/1GG4eTA). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
-		mv	./human.model	$Bin_dir/models;
+		$ mv	./human.model	$Bin_dir/models;
 
 
 ## 2. Usage and Examples
@@ -53,21 +53,27 @@ ______
 
 #### An example:
 
-Assuming I want to predict my human transcripts, `~/human.test.gtf`. I would working on my home directory `~/` and I want the output file in the folder `~/COME_out/` 
-`~/COME-master.zip` was downloaded to my working directory from [github] (https://github.com/lulab/COME/archive/master.zip)
+Assuming I want to predict my human test transcripts, `~/human.test.gtf`. I would work on my home directory `~/` and I want the output of COME stored in a folder named `~/COME_out/`.
+
+`~/COME-master.zip` was downloaded to my working directory from [github] (https://github.com/lulab/COME/archive/master.zip).
+
 `~/human.feature_vector.HDF5.zip` was downloaded to my working directory from [download page for feature vectors](http://1drv.ms/1GG4eTA).
+
 `~/human.model` was downloaded to my working directory from [download page for models](http://1drv.ms/1GG4eTA). 
+
 The commands would be: 
+
 		#Installation and preparison
-		cd ~/;							#go to working directory
-		unzip	./master.zip;					#unzip COME's scripts
-		cd 	./COME-master/bin;				#go to COME's "bin" subfolder
-		Bin_dir=`pwd|awk '{print $1}'`;				#save the path of "bin" subfolder to the variable "$Bin_dir"
-		unzip	./human.feature_vector.HDF5.zip;		#decompressing feature vector files
-		mv	./human/human.HDF5.*	$Bin_dir/HDF5;		#put feature vector files to "bin/HDF5" subfolder
-		mv	./human.model	$Bin_dir/models;		#put model file to "bin/models" subfolder
+		$ cd ~/;						#go to working directory
+		$ unzip	./master.zip;					#unzip COME's scripts
+		$ cd 	./COME-master/bin;				#go to COME's "bin" subfolder
+		$ Bin_dir=`pwd|awk '{print $1}'`;			#save the path of "bin" subfolder to the variable "$Bin_dir"
+		$ unzip	./human.feature_vector.HDF5.zip;		#decompressing feature vector files
+		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;		#put feature vector files to "bin/HDF5" subfolder
+		$ mv	./human.model	$Bin_dir/models;		#put model file to "bin/models" subfolder
 		#Running COME
-		$Bin_dir/COME_main.sh ~/human.test.gtf	~/COME_out/	$Bin_dir	human;
+		$ $Bin_dir/COME_main.sh ~/human.test.gtf	~/COME_out/	$Bin_dir	human;
+
 
 The final output will be stored in `~/COME_out/result.txt`;
 
