@@ -36,7 +36,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 
 ## 2. Usage and Examples
 
-	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output/	/path/to/bin_subfolder/	species
+	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species
   
 _____
 * `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the $Bin_dir
@@ -45,7 +45,7 @@ _____
 
 * `/path/to/your/transcripts.gtf` is your input gtf file. The input gtf file should be as the description of ucsc's [gtf format] (http://genome.ucsc.edu/FAQ/FAQformat.html#format4).    
 
-* `/path/to/your/output/` is a folder that will be created (if the user didn't create it already) to save your output file "result.txt"
+* `/path/to/your/output_folder/` is a folder that will be created (if the user didn't create it already) to save your output file "result.txt"
 
 * `species` is one of these five names: human, mouse, fly, worm and plant. It specifies which species' feature vector files and model should be applied to your calculation
 
