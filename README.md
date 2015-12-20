@@ -24,7 +24,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 		$ cd 		./COME-master/bin;
 		$ Bin_dir=`pwd|awk '{print $1}'`;
 
-2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1TXgymk). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".  transcriptome.
+2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](http://1drv.ms/1TXgymk). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".
 
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
