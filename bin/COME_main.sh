@@ -12,6 +12,10 @@ exit;
 fi
 
 ########################	input_parameters
+in_gtf=/home/hulong/COME_mac/human.test.gtf;
+out_dir=/home/hulong/COME_mac/test
+BIN_DIR=/home/hulong/COME_mac/bin
+species=human;
 
 in_gtf=$1;
 out_dir=$2;
@@ -60,7 +64,7 @@ fi
 
 ####	index for up-stream;
 awk -F '\t' '{b=split($3,a,"[:,]");print $1"\t"$2"\t"a[1]":"a[b]}'	$out_dir/$TEMP_DIR/$FILE.index.exon	>	$out_dir/$TEMP_DIR/$FILE.index.foo1;
-awk -F '\t' -v N="$UPSTREAM" '{split($3,a,"[(:)]");if($1~/+$/){foo=(a[2]-N)":"(a[2]-1);}else{foo=(a[3]+1)":"(a[3]+N);}
+awk -F '\t' -v N="$UPSTREAM" '{split($3,a,"[(:)]");if($1~/-$/){foo=(a[3]+1)":"(a[3]+N);}else{foo=(a[2]-N)":"(a[2]-1);}
 print $1"\t"$2"\tc("foo")";}'	$out_dir/$TEMP_DIR/$FILE.index.foo1	>	$out_dir/$TEMP_DIR/$FILE.index.up;
 ####	assign feature vector
 ls	$BIN_DIR/HDF5/$species.HDF5.*	|grep -v "h3k4me3"		>	$out_dir/$TEMP_DIR/$species.HDF5.list.lo;
@@ -90,7 +94,7 @@ rm -rf	$out_dir/$TEMP_DIR/$FILE.FV.exon	$out_dir/$TEMP_DIR/$FILE.FV.up	$out_dir/
 rm -rf	$out_dir/$TEMP_DIR/$FILE.header.up.foo	$out_dir/$TEMP_DIR/$FILE.FV.up.foo	$out_dir/$TEMP_DIR/$FILE.mx.foo	$out_dir/$TEMP_DIR/$FILE.header;
 
 ####	predict the matrix by models
-head -1	$out_dir/$TEMP_DIR/$FILE.mx		|sed 's/\t/\n/g'	|awk 'NR>1'	>	$out_dir/$TEMP_DIR/$FILE.feat;
+head -1	$out_dir/$TEMP_DIR/$FILE.mx		|awk -F '\t' '{for(i=1;i<=NF;i++){print $i}}'	|sed '1d'	>	$out_dir/$TEMP_DIR/$FILE.feat;
 Rscript $BIN_DIR/BRF_pred.R	$MODEL		$out_dir/$TEMP_DIR/$FILE.mx	$out_dir/$TEMP_DIR/$FILE.feat	$out_dir/$TEMP_DIR/$FILE.prob0;
 echo -e "Coding_Potential\tPrediction"	>	$out_dir/$TEMP_DIR/$FILE.prob;
 awk -F '\t' -v cutoff="$CUTOFF" 'NR>1{
@@ -128,23 +132,25 @@ if [ `expr "$matrix_size" "<" "101"` -eq "1"      ]; then
 	####	kmeans and heatmap;
 	Rscript $BIN_DIR/kmeans.R	$out_dir/$TEMP_DIR/$FILE.mx4	2	3	$out_dir/$TEMP_DIR/$FILE.kmeans;
 	####	output prediction results: coding, coding_potential, length, each feature score;
-	cut -f 1 $out_dir/$TEMP_DIR/$FILE.kmeans|sed '1d'|sed '1itranscript_ID'	>	$out_dir/$TEMP_DIR/$FILE.TRIDs
+	cut -f 1 $out_dir/$TEMP_DIR/$FILE.kmeans|sed '1d'|awk -F '\t' '{if(NR==1){print "transcript_ID\n"$1}else{print $1}}'	>	$out_dir/$TEMP_DIR/$FILE.TRIDs
 	perl	$BIN_DIR/get_matrix_from_ID.pl	$out_dir/$TEMP_DIR/$FILE.prob2	$out_dir/$TEMP_DIR/$FILE.TRIDs		$out_dir/$TEMP_DIR/$FILE.foo1;
 	perl	$BIN_DIR/get_matrix_from_ID.pl	$out_dir/$TEMP_DIR/$FILE.length	$out_dir/$TEMP_DIR/$FILE.TRIDs		$out_dir/$TEMP_DIR/$FILE.foo3;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g'	>	$out_dir/result.txt;
+        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "3 subclasses were assigned. Output matrix is done."
 else
 	####	1 subclass.
 	awk 'BEGIN{FS=OFS="\t"}{if(NR==1){foo="subclass"}else{foo=1;}print $1,foo,$2,$3,$4,$5,$6,$7,$8,$9,$10}'		$out_dir/$TEMP_DIR/$FILE.mx4	>	$out_dir/$TEMP_DIR/$FILE.kmeans;
 	####	output prediction results: coding, coding_potential, length, each feature score;
-	cut -f 1 $out_dir/$TEMP_DIR/$FILE.kmeans|sed '1d'|sed '1itranscript_ID'	>	$out_dir/$TEMP_DIR/$FILE.TRIDs
+	cut -f 1 $out_dir/$TEMP_DIR/$FILE.kmeans|sed '1d'|awk -F '\t' '{if(NR==1){print "transcript_ID\n"$1}else{print $1}}'	>	$out_dir/$TEMP_DIR/$FILE.TRIDs
 	perl	$BIN_DIR/get_matrix_from_ID.pl	$out_dir/$TEMP_DIR/$FILE.prob2	$out_dir/$TEMP_DIR/$FILE.TRIDs		$out_dir/$TEMP_DIR/$FILE.foo1;
 	perl	$BIN_DIR/get_matrix_from_ID.pl	$out_dir/$TEMP_DIR/$FILE.length	$out_dir/$TEMP_DIR/$FILE.TRIDs		$out_dir/$TEMP_DIR/$FILE.foo3;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g;'	>	$out_dir/result.txt;
+        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "1 subclass were assigned. Output matrix is done."
 fi;
 
