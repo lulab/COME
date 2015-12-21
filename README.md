@@ -69,7 +69,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 
 		## Installation and preparison
 		$ cd ~/;		
-		$ unzip	./master.zip;
+		$ unzip	./COME-master.zip;
 		$ cd 	./COME-master/bin;
 		## Save the path of "bin" subfolder to the variable "$Bin_dir"
 		$ Bin_dir=`pwd|awk '{print $1}'`;
