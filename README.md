@@ -39,7 +39,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species
   
 _____
-* `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the $Bin_dir
+* `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the `$Bin_dir`
 
 * `/path/to/bin_subfolder/COME_main.sh` is COME's main program script.
 
@@ -61,7 +61,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 
 `~/human.model` was downloaded to my working directory `~/` from [download page for models](https://1drv.ms/1TXh9o1). 
 
-The exampled test input file `human.test.gtf` and test output file `human.test.result.txt` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/tree/master/examples).
+The example input file `human.test.gtf` and example output file `human.test.result.txt` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/tree/master/examples).
 
 The commands would be: 
 
@@ -79,7 +79,8 @@ The commands would be:
 
 
 The final output will be stored in `~/COME_out/result.txt`;
-We can compare it with the example output file `~/human.test.result.txt` by the following command
+We can compare it with the example output file `~/human.test.result.txt` by the following command:
+
 		$ diff	~/COME_out/result.txt	~/test.result.txt
 
 
