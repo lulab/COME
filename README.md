@@ -42,7 +42,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 
 ## 2. Usage and Examples
 
-	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species;
+	bash /path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species;
   
 _____
 * `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the `$Bin_dir`
@@ -64,7 +64,6 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 1. `~/COME-master.zip` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/archive/master.zip).
 2. `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [download page for feature vectors](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [mirror](http://pan.baidu.com/s/1pJRd5P5).
 3. `~/human.model` was downloaded to my working directory `~/` from [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](http://pan.baidu.com/s/1dEs2pjV). 
-4. The example input file `human.test.gtf` and example output file `human.test.result.txt` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/tree/master/examples).
 5. The commands would be: 
 
 		## Installation and preparison
@@ -73,11 +72,13 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 		$ cd 	./COME-master/bin;
 		## Save the path of "bin" subfolder to the variable "$Bin_dir"
 		$ Bin_dir=`pwd|awk '{print $1}'`;
+		$ cd ~/;
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
+		$ rm -rf	./human;
 		$ mv	./human.model	$Bin_dir/models;
 		## Running COME
-		$ $Bin_dir/COME_main.sh ~/human.test.gtf	~/COME_out/	$Bin_dir	human;
+		$ bash $Bin_dir/COME_main.sh	$Bin_dir/../examples/human.test.gtf	~/COME_out	$Bin_dir	human;
 
 6. The final output will be stored in `~/COME_out/result.txt`. We can compare it with the example output file `~/human.test.result.txt` by the following command:
 
