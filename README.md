@@ -26,7 +26,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 ####	Download files into sepcific folders.   
 1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
 
-		$ unzip		./master.zip;
+		$ unzip		./COME-master.zip;
 		$ cd 		./COME-master/bin;
 		$ Bin_dir=`pwd|awk '{print $1}'`;
 
