@@ -82,7 +82,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 
 6. The final output will be stored in `~/COME_out/result.txt`. We can compare it with the example output file `~/human.test.result.txt` by the following command:
 
-		$ diff	~/COME_out/result.txt	~/human.test.result.txt;
+		$ diff	~/COME_out/result.txt	$Bin_dir/../examples/human.test.result.txt;
 
 
 ## 3. Citing COME
