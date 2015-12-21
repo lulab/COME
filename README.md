@@ -16,7 +16,8 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 1. Linux
 2. R (>=2.15.2)
 3. R packages ("randomForest" and "rhdf5"); You can install these packages by entering R and typing these:
-		
+ 
+
 		install.packages("randomForest"); 
 		source("http://bioconductor.org/biocLite.R");biocLite("rhdf5");
 
