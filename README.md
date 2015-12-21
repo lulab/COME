@@ -65,7 +65,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 
 `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [download page for feature vectors](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [mirror](http://pan.baidu.com/s/1bnShVA3).
 
-`~/human.model` was downloaded to my working directory `~/` from [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](or [mirror](http://pan.baidu.com/s/1dEs2pjV). 
+`~/human.model` was downloaded to my working directory `~/` from [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](http://pan.baidu.com/s/1dEs2pjV). 
 
 The example input file `human.test.gtf` and example output file `human.test.result.txt` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/tree/master/examples).
 
