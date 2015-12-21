@@ -12,10 +12,6 @@ exit;
 fi
 
 ########################	input_parameters
-#in_gtf=/var/www/html/RNAfinder/result/cBbKZe0CKWthBhH/input
-#out_dir=/var/www/html/RNAfinder/result/cBbKZe0CKWthBhH
-#BIN_DIR=/var/www/html/RNAfinder/come/bin
-#species=human;
 
 in_gtf=$1;
 out_dir=$2;
