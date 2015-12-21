@@ -12,10 +12,6 @@ exit;
 fi
 
 ########################	input_parameters
-in_gtf=/home/hulong/COME_mac/human.test.gtf;
-out_dir=/home/hulong/COME_mac/test
-BIN_DIR=/home/hulong/COME_mac/bin
-species=human;
 
 in_gtf=$1;
 out_dir=$2;
@@ -138,7 +134,6 @@ if [ `expr "$matrix_size" "<" "101"` -eq "1"      ]; then
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g'	>	$out_dir/result.txt;
-        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "3 subclasses were assigned. Output matrix is done."
 else
 	####	1 subclass.
@@ -150,7 +145,6 @@ else
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g;'	>	$out_dir/result.txt;
-        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "1 subclass were assigned. Output matrix is done."
 fi;
 
