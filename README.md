@@ -36,7 +36,7 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 
 ## 2. Usage and Examples
 
-	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species
+	/path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species;
   
 _____
 * `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the `$Bin_dir`
@@ -81,7 +81,7 @@ The commands would be:
 The final output will be stored in `~/COME_out/result.txt`;
 We can compare it with the example output file `~/human.test.result.txt` by the following command:
 
-		$ diff	~/COME_out/result.txt	~/test.result.txt
+		$ diff	~/COME_out/result.txt	~/human.test.result.txt;
 
 
 ## 3. Citing COME
