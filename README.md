@@ -80,9 +80,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 		## Running COME
 		$ bash $Bin_dir/COME_main.sh	$Bin_dir/../examples/human.test.gtf	~/COME_out	$Bin_dir	human;
 
-6. The final output will be stored in `~/COME_out/result.txt`. We can compare it with the example output file `~/human.test.result.txt` by the following command:
-
-		$ diff	~/COME_out/result.txt	$Bin_dir/../examples/human.test.result.txt;
+6. The final output will be stored in `~/COME_out/result.txt`. We can compare it with the example output file `~/human.test.result.txt`. (Notice: the subclass number may be different, because the K-means algorithm used random seed.)
 
 
 ## 3. Citing COME
