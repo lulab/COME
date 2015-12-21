@@ -1,6 +1,6 @@
 ################		
 ##This folder contains example input and output files.
-##Detailed usage could be found in "https://github.com/lulab/COME/blob/master/README.md".
+##Detailed usage could be found in https://github.com/lulab/COME/blob/master/README.md
 ################
 ##The md5sum codes are:
 db39f3919f226944af89d68dd104efff  fly.test.gtf
