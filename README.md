@@ -15,7 +15,9 @@ COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)
 ####	Pre-requisite:
 1. Linux
 2. R (>=2.15.2)
-3. R packages ("randomForest" and "rhd5"); You can install these packages by entering R and typing these: `install.packages("randomForest"); install.packages("rhd5");`
+3. R packages ("randomForest" and "rhdf5"); You can install these packages by entering R and typing these:
+		install.packages("randomForest"); 
+		source("http://bioconductor.org/biocLite.R");biocLite("rhdf5");
 
 ####	Download files into sepcific folders.   
 1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
