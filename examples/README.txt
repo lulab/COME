@@ -1,6 +1,8 @@
 ################		
 ##This folder contains example input and output files.
 ##Detailed usage could be found in https://github.com/lulab/COME/blob/master/README.md
+##Input file should be as the description of ucsc's gtf format (http://genome.ucsc.edu/FAQ/FAQformat.html#format4).
+##Output file contains transcript id, predicted coding potential (0.5 as cutoff), predicted label, subclass by k-means, normalized supporting features (GC_content, DNA_Cons, Protein_Cons, PolyA-, PolyA+, smallRNA, H3K36me3, RNA_Structure, H3K4me3) and transcript length
 ################
 ##The md5sum codes are:
 db39f3919f226944af89d68dd104efff  fly.test.gtf
