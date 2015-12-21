@@ -53,13 +53,15 @@ ______
 
 #### An example:
 
-Assuming I want to predict my human test transcripts, `~/human.test.gtf`. I would work on my home directory `~/` and I want the output of COME stored in a folder named `~/COME_out/`.
+Assuming I want to predict the human test transcripts from the [examples] (https://github.com/lulab/COME/tree/master/examples) folder, `human.test.gtf`. I would work on my home directory `~/` and I want the output of COME stored in a folder named `~/COME_out/`.
 
-`~/COME-master.zip` was downloaded to my working directory from [github] (https://github.com/lulab/COME/archive/master.zip).
+`~/COME-master.zip` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/archive/master.zip).
 
-`~/human.feature_vector.HDF5.zip` was downloaded to my working directory from [download page for feature vectors](https://1drv.ms/1TXgymk).
+`~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [download page for feature vectors](https://1drv.ms/1TXgymk).
 
-`~/human.model` was downloaded to my working directory from [download page for models](https://1drv.ms/1TXh9o1). 
+`~/human.model` was downloaded to my working directory `~/` from [download page for models](https://1drv.ms/1TXh9o1). 
+
+The exampled test input file `human.test.gtf` and test output file `human.test.result.txt` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/tree/master/examples).
 
 The commands would be: 
 
@@ -77,6 +79,8 @@ The commands would be:
 
 
 The final output will be stored in `~/COME_out/result.txt`;
+We can compare it with the example output file `~/human.test.result.txt` by the following command
+		$ diff	~/COME_out/result.txt	~/test.result.txt
 
 
 ## 3. Citing COME
