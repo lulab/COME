@@ -1,5 +1,5 @@
 ################		
-##Feature vector files for five species could be obtained from: http://1drv.ms/1TXgymk.
+##Feature vector files for five species could be obtained from: https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip
 ##After downloaind your species' feature vector files, please decompress it and move all the nine files into the subfolder "COME-master/bin/HDF5";
 ################
 ##The md5sum codes are:
