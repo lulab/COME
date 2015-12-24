@@ -95,10 +95,10 @@ ID=$5;foo=$3-$2+1;
 	if(ID!=$5){
 		if(foo>50){
 		print ID"\t"foo		>>	hah;
-		ID=$5;foo=$3-$2+1;
 		}else{
-		print "Warning: the transcript length is too short, transcript ",ID," is skipped";
+		print "Warning: the transcript length is too short,",ID," is skipped";
 		}
+		ID=$5;foo=$3-$2+1;
 	}else{
 	foo=foo+($3-$2+1);
 	}
@@ -106,7 +106,7 @@ ID=$5;foo=$3-$2+1;
 if(foo>50){
 print ID"\t"foo	>>	hah;
 }else{
-print "Warning: the transcript length is too short, transcript ",ID," is skipped";
+print "Warning: the transcript length is too short,",ID," is skipped";
 }
 }'		$out_file;
 
