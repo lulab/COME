@@ -39,15 +39,12 @@ echo "You have specified the species as $species";
 cd $out_dir;
 TEMP_DIR=`mktemp -d COME.temp.XXXXXX|awk '{print $1}'`;
 
-####	transcript pre-process: no need to check, because the check is done before backend.
-bash	$BIN_DIR/pre_process_gtf.sh	$in_gtf		$species	$out_dir/$TEMP_DIR/$FILE.foo;
+####	transcript pre-process
+bash	$BIN_DIR/pre_process_gtf.sh	$in_gtf		$species	$out_dir/$TEMP_DIR/$FILE.foo	$out_dir/$TEMP_DIR/$FILE.length;
 if [ -s $out_dir/$TEMP_DIR/$FILE.foo ]; then echo "Pre-processing is done"; 
 else echo "An empty file generated after the pre-processing. Exiting..."; ! [[ -d $out_dir/$TEMP_DIR ]] || rm -r -f $out_dir/$TEMP_DIR; exit 1;
 fi
 ####	transcript length
-echo -e "transcript_ID\tTranscript_length"			>	$out_dir/$TEMP_DIR/$FILE.length
-awk -F '\t' '{if(NR==1){ID=$5;foo=$3-$2+1;}else{if(ID!=$5){print ID"\t"foo;ID=$5;foo=$3-$2+1;}else{foo=foo+($3-$2+1);}}
-}END{print ID"\t"foo;}'		$out_dir/$TEMP_DIR/$FILE.foo	>>	$out_dir/$TEMP_DIR/$FILE.length;
 if [ -s $out_dir/$TEMP_DIR/$FILE.length ]; then echo "Transcripts length calculation is done"; 
 else echo "An empty file generated after length calculation. Exiting..."; ! [[ -d $out_dir/$TEMP_DIR ]] || rm -r -f $out_dir/$TEMP_DIR; exit 1;
 fi
@@ -62,6 +59,9 @@ fi
 awk -F '\t' '{b=split($3,a,"[:,]");print $1"\t"$2"\t"a[1]":"a[b]}'	$out_dir/$TEMP_DIR/$FILE.index.exon	>	$out_dir/$TEMP_DIR/$FILE.index.foo1;
 awk -F '\t' -v N="$UPSTREAM" '{split($3,a,"[(:)]");if($1~/-$/){foo=(a[3]+1)":"(a[3]+N);}else{foo=(a[2]-N)":"(a[2]-1);}
 print $1"\t"$2"\tc("foo")";}'	$out_dir/$TEMP_DIR/$FILE.index.foo1	>	$out_dir/$TEMP_DIR/$FILE.index.up;
+if [ -s $out_dir/$TEMP_DIR/$FILE.index.up ]; then echo "Transcripts upstream index calculation is done"; 
+else echo "An empty file generated after transcript upstream index calculation. Exiting..."; ! [[ -d $out_dir/$TEMP_DIR ]] || rm -r -f $out_dir/$TEMP_DIR; exit 1;
+fi
 ####	assign feature vector
 ls	$BIN_DIR/HDF5/$species.HDF5.*	|grep -v "h3k4me3"		>	$out_dir/$TEMP_DIR/$species.HDF5.list.lo;
 ls	$BIN_DIR/HDF5/$species.HDF5.*	|grep  "h3k4me3"		>	$out_dir/$TEMP_DIR/$species.HDF5.list.up;
@@ -134,6 +134,7 @@ if [ `expr "$matrix_size" "<" "101"` -eq "1"      ]; then
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g'	>	$out_dir/result.txt;
+        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "3 subclasses were assigned. Output matrix is done."
 else
 	####	1 subclass.
@@ -145,6 +146,7 @@ else
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.kmeans	>	$out_dir/$TEMP_DIR/$FILE.foo2;
 	cut -f 2- $out_dir/$TEMP_DIR/$FILE.foo3		>	$out_dir/$TEMP_DIR/$FILE.foo4;
 	paste	$out_dir/$TEMP_DIR/$FILE.foo1	$out_dir/$TEMP_DIR/$FILE.foo2	$out_dir/$TEMP_DIR/$FILE.foo4	|sed 's/ transcript_id //g;s/"//g;'	>	$out_dir/result.txt;
+        sed '1d' $out_dir/result.txt	|awk -F '\t' '{printf "%s\t%0.4f\t%s\t%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%d\t%0.4f\t%d\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14;}'	>	$out_dir/result;
 	echo "1 subclass were assigned. Output matrix is done."
 fi;
 

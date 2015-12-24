@@ -1,10 +1,11 @@
 #!/bin/bash
 # Print help message if no parameter given
 if [ "$#" == 0 ];then
-echo "Usage: ./pre_process_gtf.sh in_gtf species out_file;
+echo "Usage: ./pre_process_gtf.sh in_gtf species out_file out_length;
 in_gtf is the transcript.gtf file
 species is one of five species: human, mouse, fly, worm and plant
 out_file is the output file
+out_length is the transcript length file
 "
 exit;
 fi
@@ -12,6 +13,7 @@ fi
 in_gtf=$1
 species=$2;
 out_file=$3;
+out_length=$4;
 
 ####	check 1st column to be "chr*", 3rd column to be "exon", 7th column to be "+/-" and 10th column to be "transcript_id *";
 if   [ "$species" == "human"	];then 
@@ -83,7 +85,32 @@ else echo "wrong speices specified, only human mouse fly worm plant are avilable
 fi
 
 ####	sort
-sort -k6,6 -k1,1 -k2,2n -k3,3n -k4,4	$out_file.foo          >       $out_file;
+sort -k6,6 -k1,1 -k2,2n -k3,3n -k4,4	$out_file.foo		>	$out_file;
+
+####	length
+echo -e "transcript_ID\tTranscript_length"			>	$out_length;
+awk -F '\t' -v hah="$out_length" '{if(NR==1){
+ID=$5;foo=$3-$2+1;
+}else{
+	if(ID!=$5){
+		if(foo>50){
+		print ID"\t"foo		>>	hah;
+		ID=$5;foo=$3-$2+1;
+		}else{
+		print "Warning: the transcript length is too short, transcript ",ID," is skipped";
+		}
+	}else{
+	foo=foo+($3-$2+1);
+	}
+}}END{
+if(foo>50){
+print ID"\t"foo	>>	hah;
+}else{
+print "Warning: the transcript length is too short, transcript ",ID," is skipped";
+}
+}'		$out_file;
+
 ####	clean
 rm -rf	$out_file.foo;
+
 
