@@ -61,10 +61,19 @@ ______
 
 Assuming I want to predict the human test transcripts from the [examples] (https://github.com/lulab/COME/tree/master/examples) folder, `human.test.gtf`. I would work on my home directory `~/` and I want the output of COME stored in a folder named `~/COME_out/`.
 
-1. `~/COME-master.zip` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/archive/master.zip).
-2. `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [download page for feature vectors](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [mirror](http://pan.baidu.com/s/1pJRd5P5).
-3. `~/human.model` was downloaded to my working directory `~/` from [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](http://pan.baidu.com/s/1dEs2pjV). 
-5. The commands would be: 
+1. `~/COME-master.zip` was downloaded to my working directory `~/` from [github] (https://github.com/lulab/COME/archive/master.zip) by clicking the link or wget:
+
+		wget -c --content-disposition   http://github.com/lulab/COME/archive/master.zip;
+		
+2. `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [download page for feature vectors](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [mirror](http://pan.baidu.com/s/1pJRd5P5) by clicking the link or wget:
+
+		wget -c --content-disposition http://lulab.life.tsinghua.edu.cn/RNAfinder/download_files_for_COME/HDF5/human.feature_vector.HDF5.zip
+
+3. `~/human.model` was downloaded to my working directory `~/` from [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](http://pan.baidu.com/s/1dEs2pjV) by clicking the link or wget:
+	
+		wget -c --content-disposition   http://lulab.life.tsinghua.edu.cn/RNAfinder/download_files_for_COME/models/human.model
+
+4. Then run COME by the following commands: 
 
 		## Installation and preparison
 		$ cd ~/;		
