@@ -49,7 +49,7 @@ _____
 
 * `/path/to/bin_subfolder/COME_main.sh` is COME's main program script.
 
-* `/path/to/your/transcripts.gtf` is your input gtf file. The input gtf file should be as the description of ucsc's [gtf format] (http://genome.ucsc.edu/FAQ/FAQformat.html#format4). In summary, the first field should be chormosome in lower and abbreviate case (e.g., chr1, chrX); the third field should be exactly "exon"; the seventh field should be strand (i.e., + or -). The subsequent attribute list must begin with the two mandatory attributes: gene_id "value"; transcript_id "value". In addition, transcript length should be longer than 50 nucleotide. Any lines of your input file don't match the criteria aboved will be skipped.
+* `/path/to/your/transcripts.gtf` is your input gtf file. The input gtf file should be as the description of ucsc's [gtf format] (http://genome.ucsc.edu/FAQ/FAQformat.html#format4). In summary, the first field should be chormosome in lower and abbreviate case (e.g., chr1, chrX); the third field should be exactly "exon"; the seventh field should be strand (i.e., + or -). The subsequent attribute list must begin with the two mandatory attributes: gene_id "value"; transcript_id "value". In addition, transcript length should be longer than 50 nucleotides. Any lines of your input file don't match the criteria aboved will be skipped.
 
 * `/path/to/your/output_folder/` is a folder that will be created (if the user didn't create it already) to save your output file "result.txt"
 
