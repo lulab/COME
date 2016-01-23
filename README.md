@@ -8,8 +8,8 @@ COME is currently pre-trained for five model species: human (hg19), mouse (mm10)
 
 COME integreated features including GC content, DNA sequence conservation, protein conservation and RNA secondary structure conservation, expression abundance from poly(A)+, poly(A)- and small RNA sequencing, H3K36me3 and H3K4me3 modification. These input features were pre-calculated and avaiable in folder of [bin/HDF5] (https://github.com/lulab/COME/tree/master/bin/HDF5)
 
+For users who are not familiar with Linux, we also provide a [webserver](http://RNAfinder.ncrnalab.org/COME), which is still in a beta version.
 
-COME also is avaliable as a [webserver](http://RNAfinder.ncrnalab.org/COME)  
 
 ## 1. Installation
 ####	Pre-requisite:
