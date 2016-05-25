@@ -1,8 +1,7 @@
 Args	=	commandArgs(TRUE);
 inputF1	=	Args[1];#input the model;
 inputF2	=	Args[2];#input the predict matrix;
-inputF3	=	Args[3];#input features 
-output1	=	Args[4];#output the predition probablity.
+output1	=	Args[3];#output the predition probablity.
 
 Nlines	= 	10000;
 library("randomForest");
@@ -15,7 +14,8 @@ while(length(IN)	!=	0){
 	if(flag ==	0){
 		Mx	=	read.table(text=IN,sep="\t",head=T,quote="",check.names=F);
 		HEADER	=	colnames(Mx);
-		FI	=	as.vector(as.matrix(read.table(inputF3,head=F,sep="\t")));
+		tmp	=	model_list[[1]];
+		FI	=	as.vector(rownames(tmp$importance));
 		ID	=	which(is.element(HEADER,FI));
 		Mx	=	as.matrix(Mx[,ID]);
 		for(m in 1:length(model_list)){

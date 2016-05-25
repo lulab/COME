@@ -2,11 +2,17 @@
 #!/bin/bash
 # Print help message if no parameter given
 if [ "$#" == 0 ];then
-echo "Usage: ./COME_main.sh in_gtf out_dir BIN_DIR species
+echo "Usage: ./COME_main.sh in_gtf out_dir BIN_DIR species model
 ####	in_gtf	:	is the transcript.gtf file with its absolute path.
 ####	out_dir	:	is the output folder for your results, better in absolute path.
 ####	BIN_DIR	:	is the bin folder for COME's scripts, better in absolute path.
 ####	species	:	is the species your transcripts belong to. Now, only human mouse fly worm plant were allowed.
+####	model	:	is the model used for prediction. Now, only these models were allowed:
+human.model	human.NoExpHis.model
+mouse.model	mouse.NoExpHis.model
+fly.model	fly.NoExpHis.model
+worm.model	worm.NoExpHis.model
+plant.model	plant.NoExpHis.model
 "
 exit;
 fi
@@ -16,22 +22,46 @@ in_gtf=$1;
 out_dir=$2;
 BIN_DIR=$3;
 species=$4;
+model=$5;
 
 ########################	processing
 ####	predefined parameters;
 echo "You have specified COME's bin folder as $BIN_DIR";
 FILE=${in_gtf##*/};
 echo "The input file's name is : $FILE";
-if   [ "$species" == "human"	];then CUTOFF=0.4830;	UPSTREAM=100;	MODEL=$BIN_DIR/models/human.model;
-elif [ "$species" == "mouse"	];then CUTOFF=0.5052;	UPSTREAM=100;	MODEL=$BIN_DIR/models/mouse.model;
-elif [ "$species" == "plant"	];then CUTOFF=0.4282;	UPSTREAM=40;	MODEL=$BIN_DIR/models/plant.model;
-elif [ "$species" == "worm"	];then CUTOFF=0.3869;	UPSTREAM=40;	MODEL=$BIN_DIR/models/worm.model;
-elif [ "$species" == "fly"	];then CUTOFF=0.4589;	UPSTREAM=40;	MODEL=$BIN_DIR/models/fly.model;
+
+if   [ "$species" == "human"	];then UPSTREAM=100; 
+elif [ "$species" == "mouse"	];then UPSTREAM=100; 
+elif [ "$species" == "plant"	];then UPSTREAM=40;  
+elif [ "$species" == "worm"	];then UPSTREAM=40; 
+elif [ "$species" == "fly"	];then UPSTREAM=40; 
 else 
 echo "wrong speices specified, only human mouse fly worm plant are avilable now. Exiting...";
 exit 1;
 fi
 echo "You have specified the species as $species";
+
+if   [ "$model" == "human.model"		];then CUTOFF=0.4820;	MODEL=$BIN_DIR/models/human.model;
+elif [ "$model" == "mouse.model"		];then CUTOFF=0.4172;	MODEL=$BIN_DIR/models/mouse.model;
+elif [ "$model" == "plant.model"		];then CUTOFF=0.4179;	MODEL=$BIN_DIR/models/plant.model;
+elif [ "$model" == "worm.model"			];then CUTOFF=0.3842;	MODEL=$BIN_DIR/models/worm.model;
+elif [ "$model" == "fly.model"			];then CUTOFF=0.5368;	MODEL=$BIN_DIR/models/fly.model;
+elif [ "$model" == "human.NoExpHis.model"	];then CUTOFF=0.4772;	MODEL=$BIN_DIR/models/human.NoExpHis.model;
+elif [ "$model" == "mouse.NoExpHis.model"	];then CUTOFF=0.4278;	MODEL=$BIN_DIR/models/mouse.NoExpHis.model;
+elif [ "$model" == "plant.NoExpHis.model"	];then CUTOFF=0.3415;	MODEL=$BIN_DIR/models/plant.NoExpHis.model;
+elif [ "$model" == "worm.NoExpHis.model"	];then CUTOFF=0.3482;	MODEL=$BIN_DIR/models/worm.NoExpHis.model;
+elif [ "$model" == "fly.NoExpHis.model"		];then CUTOFF=0.5742;	MODEL=$BIN_DIR/models/fly.NoExpHis.model;
+else 
+echo "wrong model specified, Now, only these models were allowed:
+human.model     human.NoExpHis.model
+mouse.model     mouse.NoExpHis.model
+fly.model       fly.NoExpHis.model
+worm.model      worm.NoExpHis.model
+plant.model     plant.NoExpHis.model
+Exiting...";
+exit 1;
+fi
+echo "You have specified the model as $model";
 
 ####	build the output dir (if not exists already) and build temparary folder
 [[ -d $out_dir ]] || mkdir -p $out_dir;
@@ -89,8 +119,7 @@ rm -rf	$out_dir/$TEMP_DIR/$FILE.FV.exon	$out_dir/$TEMP_DIR/$FILE.FV.up	$out_dir/
 rm -rf	$out_dir/$TEMP_DIR/$FILE.header.up.foo	$out_dir/$TEMP_DIR/$FILE.FV.up.foo	$out_dir/$TEMP_DIR/$FILE.mx.foo	$out_dir/$TEMP_DIR/$FILE.header;
 
 ####	predict the matrix by models
-head -1	$out_dir/$TEMP_DIR/$FILE.mx		|awk -F '\t' '{for(i=1;i<=NF;i++){print $i}}'	|sed '1d'	>	$out_dir/$TEMP_DIR/$FILE.feat;
-Rscript $BIN_DIR/BRF_pred.R	$MODEL		$out_dir/$TEMP_DIR/$FILE.mx	$out_dir/$TEMP_DIR/$FILE.feat	$out_dir/$TEMP_DIR/$FILE.prob0;
+Rscript $BIN_DIR/BRF_pred.R	$MODEL		$out_dir/$TEMP_DIR/$FILE.mx		$out_dir/$TEMP_DIR/$FILE.prob0;
 echo -e "Coding_Potential\tPrediction"	>	$out_dir/$TEMP_DIR/$FILE.prob;
 awk -F '\t' -v cutoff="$CUTOFF" 'NR>1{
 if($1>=cutoff){	foo=0.5+(0.5/(1-cutoff))*($1-cutoff);	printf "%0.4f\tcoding\n", foo;
