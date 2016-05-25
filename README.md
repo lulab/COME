@@ -105,7 +105,7 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 ## 3. Citing COME
 =================
 
-Hu L., Hu B. and Lu ZJ,  COME: a robust coding potential calculator for lncRNA identification and characterization based on multiple features,   2015
+Hu L., Xu Z., Hu B. and Lu ZJ, COME: a robust coding potential calculation tool for lncRNA identification and characterization based on multiple features, 2016 
 
 
 ## 4. Contact
