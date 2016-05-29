@@ -2,7 +2,7 @@
 
 ## 0. About COME
 
-COME (coding potential calculator based on multiple features) is a computational tool that predicts the coding potential for a given transcript. It integrates multiple sequence-derived and experiment-based features using a decompose-compose method, which makes COME’s performance more accurate and robust than other well-known tools, for transcripts with different lengths and assembly qualities. First, COME compose the feature matrix for the given transcripts using the pre-calculated features vectors. Second, COME predict the coding potential by the pre-trained models, using the feature matrix generated in the first step.
+COME (coding potential calculator based on multiple features) is a computational tool that predicts the coding potential for a given transcript. It integrates multiple sequence-derived and experiment-based features using a decompose-compose method, which makes COME’s performance more accurate and robust than other well-known tools. First, COME compose the feature matrix for the given transcripts using the pre-calculated features vectors. Second, COME predict the coding potential by the pre-trained models, using the feature matrix generated in the first step.
 
 COME is currently pre-trained for five model species: human (hg19), mouse (mm10), fly (dm3), worm (ce10) and plant (TAIR10). The pre-trained models were avaible in the folder of [bin/models] (https://github.com/lulab/COME/tree/master/bin/models)
 
@@ -42,7 +42,7 @@ For users who are not familiar with Linux, we also provide a [webserver](http://
 
 ## 2. Usage and Examples
 
-	bash /path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species;
+	bash /path/to/bin_subfolder/COME_main.sh /path/to/your/transcripts.gtf	/path/to/your/output_folder/	/path/to/bin_subfolder/	species	model;
   
 _____
 * `/path/to/bin_subfolder/` is the path where you kept downloaded COME's "bin" subfolder, i.e., the `$Bin_dir`
@@ -53,7 +53,11 @@ _____
 
 * `/path/to/your/output_folder/` is a folder that will be created (if the user didn't create it already) to save your output file "result.txt"
 
-* `species` is one of these five names: human, mouse, fly, worm and plant. It specifies which species' feature vector files and model should be applied to your calculation
+* `species` is one of these five names: "human", "mouse", "fly", "worm" and "plant". It specifies which species' feature vector files should be applied to your calculation
+
+* `model` is one of these ten names: "human.model", "human.NoExpHis.model", "mouse.model", "mouse.NoExpHis.model", "fly.model", "fly.NoExpHis.model", "worm.model", "worm.NoExpHis.model", "plant.model" and "plant.NoExpHis.model". It specifies which model should be applied to your calculation. `*.model`, e.g., `human.model`, is the default model trained by multiple sequence-derived and experiment-based features. We also provided `*.NoExpHis.model`, e.g., `human.NoExpHis.model`, which is the model trained by multiple sequence-derived features only.
+
+
 
 ______  
 
@@ -90,15 +94,18 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 		$ rm -rf	./human;
 		$ mv	./human.model	$Bin_dir/models;
 		## Running COME
-		$ bash $Bin_dir/COME_main.sh	$Bin_dir/../examples/human.test.gtf	~/COME_out	$Bin_dir	human;
+		$ bash $Bin_dir/COME_main.sh	$Bin_dir/../examples/human.test.gtf	~/COME_out	$Bin_dir	human	human.model;
 
 6. The final output will be stored in `~/COME_out/result.txt`. We can compare it with the example output file `~/human.test.result.txt`. (Notice: the subclass number may be different, because the K-means algorithm used random seed.)
+
+7. Users are recommended to use the absolute path (`/dir1/dir2/file1`) instead of the relative path (`../../file2`).
+
 
 
 ## 3. Citing COME
 =================
 
-Hu L., Hu B. and Lu ZJ,  COME: a robust coding potential calculator for lncRNA identification and characterization based on multiple features,   2015
+Hu L., Xu Z., Hu B. and Lu ZJ, COME: a robust coding potential calculation tool for lncRNA identification and characterization based on multiple features, 2016 
 
 
 ## 4. Contact
