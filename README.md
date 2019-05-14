@@ -30,12 +30,12 @@ For users who are not familiar with Linux, we also provide a [webserver](http://
 		$ cd 		./COME-master/bin;
 		$ Bin_dir=`pwd|awk '{print $1}'`;
 
-2. Second, download your species'(Let's say, _human_) feature vector files from the [download page for feature vectors](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [mirror](http://pan.baidu.com/s/1pJRd5P5). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".
+2. Second, download your species'(Let's say, _human_) feature vector files from the [one drive](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51586&authkey=!AJaFH5EENUp0FVI&ithint=folder%2czip) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/9d58509b9a3f4221a7e8/?p=/HDF5&mode=list). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".
 
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
 	
-3. Third, download your species' model file from the [download page for models](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [mirror](http://pan.baidu.com/s/1dEs2pjV). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
+3. Third, download your species' model file from the [onedrive](https://onedrive.live.com/redir?resid=AFBF18A0971099A!51594&authkey=!AJf5-cl93Z-4nJs&ithint=folder%2cmodel) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/9d58509b9a3f4221a7e8/?p=/models&mode=list). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
 		$ mv	./human.model	$Bin_dir/models;
 
