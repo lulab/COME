@@ -13,15 +13,16 @@ For users who are not familiar with Linux, we also provide a [webserver](http://
 
 ## 1. Installation
 ####	Pre-requisite
-1. Linux
-2. R (>=2.15.2)
-3. R packages ("randomForest" and "rhdf5"); You can install these packages by entering R and typing these:
+1. **Download HDF5 and model files** from [onedrive](https://1drv.ms/f/s!ApoJcQmK8fsKg5MS7NfEUGhahiLLFA) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/dfbc9a67f9124bda93c6/)
+2. Linux
+3. R (>=2.15.2)
+4. R packages ("randomForest" and "rhdf5"); You can install these packages by entering R and typing these:
 
 		## Install package "randomForest"
 		install.packages("randomForest"); 
 		## Install package "rhdf5"
 		source("http://bioconductor.org/biocLite.R");biocLite("rhdf5");
-4. **Download HDF5 and model files** from [onedrive](https://1drv.ms/f/s!ApoJcQmK8fsKg5MS7NfEUGhahiLLFA) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/dfbc9a67f9124bda93c6/)
+
 
 ####	Download files into sepcific folders.   
 1. First, change directory to your working directory, download the source codes from https://github.com/lulab/COME/archive/master.zip and decompress it. Enter the subfolder "COME-master/bin" and define the path as the variable `Bin_dir`
@@ -30,12 +31,12 @@ For users who are not familiar with Linux, we also provide a [webserver](http://
 		$ cd 		./COME-master/bin;
 		$ Bin_dir=`pwd|awk '{print $1}'`;
 
-2. Second, download your species'(Let's say, _human_) feature vector files from [onedrive or Tsinghua Cloud](#pre-requisite). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".
+2. Second, download your species'(Let's say, _human_) feature vector files from onedrive or Tsinghua Cloud ( [see download links above](#pre-requisite) ). These (nine) files need to be placed in the subfolder "COME-master/bin/HDF5".
 
 		$ unzip	./human.feature_vector.HDF5.zip;
 		$ mv	./human/human.HDF5.*	$Bin_dir/HDF5;
 	
-3. Third, download your species' model file from [onedrive or Tsinghua Cloud](#pre-requisite). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
+3. Third, download your species' model file from onedrive or Tsinghua Cloud ( [see download links above](#pre-requisite) ). The (one) model file need to be placed in the subfolder "COME-master/bin/models".
 
 		$ mv	./human.model	$Bin_dir/models;
 
@@ -70,12 +71,12 @@ Assuming I want to predict the human test transcripts from the [examples] (https
 		$ cd ~;
 		$ wget -c --content-disposition   http://github.com/lulab/COME/archive/master.zip;
 		
-2. `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from [onedrive or Tsinghua Cloud](#pre-requisite) by clicking the link or wget:
+2. `~/human.feature_vector.HDF5.zip` was downloaded to my working directory `~/` from onedrive or Tsinghua Cloud ( [see download links above](#pre-requisite) ) or wget:
 
 		$ cd ~;
 		$ wget -c --content-disposition http://lulab.life.tsinghua.edu.cn/RNAfinder/download_files_for_COME/HDF5/human.feature_vector.HDF5.zip
 
-3. `~/human.model` was downloaded to my working directory `~/` from [onedrive or Tsinghua Cloud](#pre-requisite) by clicking the link or wget:
+3. `~/human.model` was downloaded to my working directory `~/` from onedrive or Tsinghua Cloud ( [see download links above](#pre-requisite) ) or wget:
 	
 		$ cd ~;
 		$ wget -c --content-disposition   http://lulab.life.tsinghua.edu.cn/RNAfinder/download_files_for_COME/models/human.model
