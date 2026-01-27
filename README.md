@@ -13,7 +13,7 @@ For users who are not familiar with Linux, we also provide a [webserver](http://
 
 ## 1. Installation
 ####	Pre-requisite
-1. **Download HDF5 and model files** from [onedrive](https://1drv.ms/f/s!ApoJcQmK8fsKg5MS7NfEUGhahiLLFA) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/dfbc9a67f9124bda93c6/)
+1. **Download HDF5 and model files** from [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/915bcc7123f54244b41d/)
 2. Linux
 3. R (>=2.15.2)
 4. R packages ("randomForest" and "rhdf5"); You can install these packages by entering R and typing these:
